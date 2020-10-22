@@ -18,15 +18,19 @@
 Каждый урок сдавать в отдельной ветке
 */
 
-//создаем переменные
-// let money;
-// let income;
-// let addExpenses;
-// let deposit;
-// let mission;
-// let period;
+console.log('Это первый Урок 1 Обязательная Домашка');
+
+/* 
+let money;
+let income;
+let addExpenses;
+let deposit;
+let mission;
+let period;
+ */
 
 let money, income, addExpenses, deposit, mission, period;
 
 
-alert('Hello world!\nЭто Урок 1');
+alert('Hello, this Lesson01');
+console.log('Привет это сообщение простое в консоль');
