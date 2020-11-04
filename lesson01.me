@@ -1,0 +1,98 @@
+﻿This is lesson01
+
+https://study.up-skills.ru/pl/teach/control/lesson/view?id=174972914
+
+Урок №1
+Введение в язык, подключение javascript. Основы работы с Git
+
+Полезные ссылки
+Правильный выбор имени переменной
+https://learn.javascript.ru/variables#pridumyvayte-pravilnye-imena
+
+Объект консоль
+https://developer.mozilla.org/ru/docs/Web/API/Console
+
+Интерактивный тур по git
+https://githowto.com/ru
+
+Часто задаваемые вопросы по git
+http://firstaidgit.ru
+
+Шпаргалка по консольным командам Git
+https://github.com/nicothin/web-development/blob/master/git/readme.md
+
+
+УРОК №1
+Введение в язык, подключение javascript
+Основы работы с Git
+
+Основные команды из видео
+
+Первоначальная настройка git на пк
+
+git config --global user.name "Your Name"  - указать имя, которым будут подписаны коммиты
+git config -- global user.email "your_email@mail.com"  - указать электропочту, которая будет в описании коммитера
+git config --global core.autocrlf true - включить преобразование окончаний строк из CRLF в LF
+
+
+
+посмотреть настройки
+git config --list
+
+
+Для проекта
+git init - создает репозиторий в текущей папке
+git init folder-name - создает репоизторий в папке folder-name
+
+
+git add <путь до файла> - изменить статус файла на отслеживаемый
+git add . - добавить все файлы в отслеживаемые
+
+
+git commit -m "Name of commit"  - зафиксировать в коммите проиндексированные изменения (закоммитить), добавить сообщение
+git commit -a -m "Name of commit" - проиндексировать отслеживаемые файлы (ТОЛЬКО отслеживаемые, но НЕ новые файлы) и закоммитить, добавить сообщение
+
+
+git log - посмотреть историю коммитов
+git log --oneline - красивый вид предыдущей команды
+git log --oneline --all --graph - показывает все векти
+
+
+git status - статус коммита
+git checkout - для смены ветки
+git checkot -b - добавить новую ветку
+
+
+git remote add origin "url git" -  добавить удалённый репозиторий (с сокр. именем origin) с указанным URL
+git fetch origin - скачать все ветки с удаленного репозитория (с сокр. именем origin), но не сливать со своими ветками
+git fetch origin master - то же, но скачивается только указанная ветка
+
+git push origin master - отправить в удалённый репозиторий (с сокр. именем origin) данные своей ветки master
+git pull origin - влить изменения с удалённого репозитория (все ветки)
+git pull origin master - влить изменения с удалённого репозитория (только указанная ветка)
+
+
+
+
+Задание
+ОБЯЗАТЕЛЬНОЕ ЗАДАНИЕ: 
+
+1) Создать пустой репозиторий на GitHub без файла README.md
+
+2) Создать HTML страницу и подключить к ней файл скрипта
+
+3) В файле скрипта создать переменные:
+	- money, 
+        - income, 
+        - addExpenses, 
+        - deposit, 
+        - mission, 
+        - period
+
+4) Вывести на экран в модальном окне (alert) сообщение с любым текстом
+5) Вывести в консоль сообщение с любым текстом
+6) Проверить, чтобы все работало и не было ошибок в консоли
+7) В репозитории создать отдельную ветку lesson01 на GitHub и поместить туда папку с первым заданием
+
+Каждый урок сдавать в отдельной ветке
+
