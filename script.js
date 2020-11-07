@@ -42,8 +42,6 @@ let deposit = confirm('Есть ли у вас депозит в банке?'); 
 
 
 
-
-
 //////ВОЗМОЖНО ЦИКЛ ВВОДА ДАННЫХ
 let expenses1 = prompt('Введите обязательную статью расходов?', 'Покупка стиральной машины');
 let amount1 = +prompt('Во сколько это обойдется?', 20000);
@@ -52,6 +50,7 @@ let amount1 = +prompt('Во сколько это обойдется?', 20000);
 let expenses2 = prompt('Еще раз Введите обязательную статью расходов?', 'Оплата обучения');
 let amount2 = +prompt('Еще раз Во сколько это обойдется?', 13700);
 // console.log(`${expenses2} обойдется в ${amount2} рублей в этом месяце`);
+
 
 
 //1) Объявить функцию getExpensesMonth Функция возвращает сумму всех обязательных расходов за месяц
@@ -65,7 +64,6 @@ const getAccumulatedMonth = function() {
     return money - getExpensesMonth();
 }
 
-
 //3) Объявить переменную accumulatedMonth и присвоить ей результат вызова функции getAccumulatedMonth 
 let accumulatedMonth = getAccumulatedMonth(); // == money - (amount1 + amount2);
 
@@ -73,54 +71,54 @@ let accumulatedMonth = getAccumulatedMonth(); // == money - (amount1 + amount2);
 //4) Объявить функцию getTargetMonth. Подсчитывает за какой период будет достигнута цель, зная результат месячного накопления (accumulatedMonth) и возвращает результат
 
 let mission = 60000; //любое число Какую сумму хочу накопить за данный период
-const getTargetMonth = function() {
 
+const getTargetMonth = function() {
+    //число от 1 до 12 месяцев за сколько месяцев будет достигнута
     return Math.ceil(mission / accumulatedMonth);
 }
 
 
+const showTypeOf = (variable) => {
+    console.log(typeof variable);
+}
 
-//вычисляем бюджет
-// let budgetMonth = amount1 + amount2;
-// let budgetMonth = getExpensesMonth();
+
+
 //5) Удалить из кода переменную budgetMonth
+let budgetDay = accumulatedMonth / 30;
+// let period = getTargetMonth();
 
+// console.log('Месячный доход money:', money, '- typeof money:', typeof money);
+showTypeOf(money);
+// console.log('Виды дохода income:', income, '- typeof income:', typeof income);
+showTypeOf(income);
+// console.log('Наличие депозита deposit:', deposit, '- typeof deposit:', typeof deposit);
+showTypeOf(deposit);
 
-//вычисляем бюджет исходя из наших расходов
-// let budgetMonth = money - (amount1 + amount2);
-// let mission = 60000; //любое число Какую сумму хочу накопить за данный период
-// let period = Math.ceil(mission / budgetMonth); //число от 1 до 12 месяцев за сколько месяцев будет достигнута
+console.log('Расходы за месяц составляют:', getExpensesMonth()); //длина строки
 
+// console.log('addExpenses.length = ', addExpenses.length); //длина строки
 
-// let budgetDay = budgetMonth / 30;
-let budgetDay = getAccumulatedMonth() / 30;
+console.log('Возможные рассходы', addExpenses.toLowerCase().split(', '));
 
-let period = getTargetMonth();
-
-console.log('Месячный доход money:', money, '- typeof money:', typeof money);
-console.log('Виды дохода income:', income, '- typeof income:', typeof income);
-console.log('Наличие депозита deposit:', deposit, '- typeof deposit:', typeof deposit);
-
-console.log('addExpenses.length = ', addExpenses.length);
-
-console.log(`Период равен ${period} месяцев`);
-console.log('Цель заработать ' + mission + ' рублей');
-
-console.dir(addExpenses.toLowerCase().split(', '));
+console.log('Период равен', getTargetMonth(), 'месяцев');
+console.log('Цель заработать ' + mission + ' рублей/долларов/гривен/юани');
 
 
 console.log('Бюджет на день budgetDay: ', Math.floor(budgetDay)); //округляем до меньшего при выводе
 
 
-
-
-if (budgetDay >= 1200) {
-    console.log('У вас высокий уровень дохода');
-} else if (budgetDay >= 600) {
-    console.log('У вас средний уровень дохода');
-} else if (budgetDay > 0) {
-    console.log('К сожалению у вас уровень дохода ниже среднего');
-    console.log('Следует серьезно отнестись к своему планированию');
-} else {
-    console.log('Остается бюджет 0 или ниже');
+const getStatusIncome = () => {
+    if (budgetDay >= 1200) {
+        console.log('У вас высокий уровень дохода');
+    } else if (budgetDay >= 600) {
+        console.log('У вас средний уровень дохода');
+    } else if (budgetDay > 0) {
+        console.log('К сожалению у вас уровень дохода ниже среднего');
+        console.log('Следует серьезно отнестись к своему планированию');
+    } else {
+        console.log('Остается бюджет 0 или ниже');
+    };
 }
+
+getStatusIncome();
