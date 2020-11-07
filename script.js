@@ -34,53 +34,46 @@ let mission = 60000; //любое число Какую сумму хочу на
 let period = 2; //число от 1 до 12 месяцев
 */
 
-console.log('Это первый Урок 3 Домашка Обязательное');
+console.log('Это первый Урок 3 Домашка Обязательное задание');
 
-
-let income = 'Фриланс, Офисная работа, Подработки, Системное администрирование'; //строка с доходом
 
 let money = +prompt('Ваш месячный доход?', 100000); //Спрашиваем у пользователя “Ваш месячный доход?”
-console.log('money: ', money);
-
+// console.log('money: ', money);
+let income = 'Фриланс, Офисная работа, Подработки, Системное администрирование'; //строка с доходом
+// console.log('income: ', income);
 let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит'); //строка с перечислением дополнительных расходов через запятую 
-console.log('addExpenses: ', addExpenses);
-
+// console.log('addExpenses: ', addExpenses);
 let deposit = confirm('Есть ли у вас депозит в банке?'); //любое булево значение
-console.log('deposit: ', deposit);
+// console.log('deposit: ', deposit);
 
 
 //////ВОЗМОЖНО ЦИКЛ ВВОДА ДАННЫХ
 let expenses1 = prompt('Введите обязательную статью расходов?', 'Покупка стиральной машины');
 let amount1 = +prompt('Во сколько это обойдется?', 20000);
-console.log(`${expenses1} обойдется в ${amount1} рублей в этом месяце`);
+// console.log(`${expenses1} обойдется в ${amount1} рублей в этом месяце`);
 
 let expenses2 = prompt('Еще раз Введите обязательную статью расходов?', 'Оплата обучения');
 let amount2 = +prompt('Еще раз Во сколько это обойдется?', 30000);
-console.log(`${expenses2} обойдется в ${amount2} рублей в этом месяце`);
+// console.log(`${expenses2} обойдется в ${amount2} рублей в этом месяце`);
 
 
 //вычисляем бюджет исходя из наших расходов
 let budgetMonth = money - (amount1 + amount2);
-console.log('Бюджет на месяц budgetMonth:', budgetMonth);
-
 let mission = 60000; //любое число Какую сумму хочу накопить за данный период
-
 let period = Math.ceil(mission / budgetMonth); //число от 1 до 12 месяцев за сколько месяцев будет достигнута
-console.log(`Наша цель в ${mission} рублей может быть достигнута за ${period} месяцев`);
 
 
 console.log('Месячный доход money:', money, '- typeof money:', typeof money);
 console.log('Виды дохода income:', income, '- typeof income:', typeof income);
 console.log('Наличие депозита deposit:', deposit, '- typeof deposit:', typeof deposit);
-
 console.log('addExpenses.length = ', addExpenses.length);
+console.log(`Наша цель заработать ${mission} рублей/долларов/гривен/юани может быть достигнута за ${period} месяцев`);
 console.log('addExpenses:', addExpenses.toLowerCase().split(', '));
+console.log('Бюджет на месяц budgetMonth:', budgetMonth);
 
 // let budgetDay = money / 30;
-// вычисляем бюджет на день из бюджета на месяц
-let budgetDay = budgetMonth / 30;
+let budgetDay = budgetMonth / 30; // вычисляем бюджет на день из бюджета на месяц
 console.log('Бюджет на день budgetDay: ', Math.floor(budgetDay)); //округляем до меньшего при выводе
-
 
 // 9) Написать конструкцию условий (расчеты приведены в рублях)	
 //     Если budgetDay больше 1200, то “У вас высокий уровень дохода”
@@ -88,11 +81,12 @@ console.log('Бюджет на день budgetDay: ', Math.floor(budgetDay)); //
 //     Если budgetDay меньше 600 и больше 0 то в консоль вывести сообщение “К сожалению у вас уровень дохода ниже среднего”
 //     Если отрицательное значение то вывести “Что-то пошло не так”
 //     Учесть варианты 0, 600 и 1200 (к какому уровню не важно)
+
 if (budgetDay >= 1200) {
     console.log('У вас высокий уровень дохода');
 } else if (budgetDay >= 600) {
     console.log('У вас средний уровень дохода');
-} else if (budgetDay > 0) {
+} else if (budgetDay >= 0) {
     console.log('К сожалению у вас уровень дохода ниже среднего');
     console.log('Следует серьезно отнестись к своему планированию');
 } else {
