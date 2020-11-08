@@ -14,24 +14,27 @@
 
 console.log('Это первый Урок 5 Домашка Обязательное задание Все о циклах');
 
+let isNumber = function(n) { return !isNaN(parseFloat(n)) && isFinite(n); };
+
 
 let money,
     income = 'Фриланс', //строка с доходом
     addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Бензин, коммунальные платежи, лицензионное ПО'), //строка с перечислением дополнительных расходов через запятую 
     deposit = confirm('Есть ли у вас депозит в банке?'), //любое булево значение
     mission = 50000, //любое число Какую сумму хочу накопить за данный период
-    period = 3; //период достижения денежной цели
+    period = 3; //период достижения денежной цели;
 
 
 
 const start = function() {
     do {
         money = prompt('Ваш месячный доход?'); //Спрашиваем у пользователя “Ваш месячный доход?”
+        console.log('money: ', money);
     } 
     //while ( isNaN(parseFloat(money)) ); //проверка является ли введенное пользователем числом
-    while ( isNaN(money) || money.trim === '' || money === null )
+    // while ( isNaN(money) || money.trim() === '' || money === null )
+    while ( !isNumber(money) || money === null );
 }
-
 start();
 
 const showTypeOf = (data) => console.log(data, typeof data);
@@ -39,32 +42,30 @@ showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
 
-let expenses1, expenses2;
-let amount1, amount2;
+// let expenses1, expenses2;
+// let amount1, amount2;
+let expenses = [];
 
 
 const getExpensesMonth = function() {
-    let sum = 0;
-
-    //сначала просто организуем ввод 2 варианта расходов
-    //i = 0, 1.
+    let num, sum = 0;
     for (let i = 0; i < 2; i++) {
-        // МОЖНО ОРГАНИЗОВАТЬ МАССИВ
-        if (i === 0) {
-            expenses1 = prompt('Введите обязательную статью расходов?', 'Покупка стиральной машины');
-        } else if (i === 1) {
-            expenses2 = prompt('Еще раз Введите обязательную статью расходов?', 'Оплата обучения');
-        };
-
-        //суммируем
-        sum += +prompt('Во сколько это обойдется?', 13700);
+        expenses[i] = prompt('Введите обязательную статью расходов?');
+        do {
+            num = prompt('Во сколько это обойдется?');
+            console.log('num: ', num);
+        }
+        //проверяем что ввели число
+        while (!isNumber(num));
+        sum += parseFloat(num);
     };
-
+    
     return sum; //вывод суммарного расхода в месяц
 };
 
 let expensesAmount = getExpensesMonth();
 
+console.log('Расходы за месяц:', expensesAmount);
 
 // Объявить функцию getAccumulatedMonth. Функция возвращает Накопления за месяц (Доходы минус расходы)
 const getAccumulatedMonth = function() {
@@ -82,11 +83,16 @@ const getTargetMonth = function() {
 let budgetDay = accumulatedMonth / 30;
 
 
-console.log('Расходы за месяц составляют:', expensesAmount);
 
 console.log(addExpenses.toLowerCase().split(', ')); //Вывод возможных расходов в виде массива (addExpenses)
 
-console.log('Срок достижения цели равен', getTargetMonth(), 'месяцев');
+period = getTargetMonth();
+if (period > 0) {
+    console.log('Цель будет достигнута', getTargetMonth(), 'месяцев');
+} else {
+    console.log('Цель не будет достигнута');
+};
+
 console.log('Цель заработать ' + mission + ' рублей/долларов/гривен/юани');
 
 console.log('Бюджет на месяц:', accumulatedMonth);
