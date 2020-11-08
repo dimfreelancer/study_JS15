@@ -5,22 +5,23 @@
 https://github.com/dimfreelancer/study_JS15
 
 
+# Ссылка на основной репозиторий 
+# https://github.com/dimfreelancer/study_JS15.git
 
-https://github.com/dimfreelancer/study_JS15/tree/main
+ОБЯЗАТЕЛЬНЫЕ ЗАДАНИЯ
+Ветка Main https://github.com/dimfreelancer/study_JS15/tree/main
 
-https://github.com/dimfreelancer/study_JS15/tree/lesson01
+Урок 1 https://github.com/dimfreelancer/study_JS15/tree/lesson01
 
-https://github.com/dimfreelancer/study_JS15/tree/lesson02
+Урок 2 https://github.com/dimfreelancer/study_JS15/tree/lesson02
 
-https://github.com/dimfreelancer/study_JS15/tree/lesson03
+Урок 3 https://github.com/dimfreelancer/study_JS15/tree/lesson03
 
-https://github.com/dimfreelancer/study_JS15/tree/lesson04
+Урок 4 https://github.com/dimfreelancer/study_JS15/tree/lesson04
 
-https://github.com/dimfreelancer/study_JS15/tree/lesson05
+Урок 5 https://github.com/dimfreelancer/study_JS15/tree/lesson05
 
+Урок 6 в отдельном репозитории
 
-
-
-
-https://github.com/dimfreelancer/study_JS15/tree/lesson07
+Урок 7 https://github.com/dimfreelancer/study_JS15/tree/lesson07
 
