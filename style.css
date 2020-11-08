@@ -1,5 +1,8 @@
 * {
     box-sizing: border-box;
+    /* display: block; */
+    margin: 0;
+    padding: 25px 10px;
 }
 
 body { 
