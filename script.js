@@ -1,22 +1,24 @@
 'use script';
 
 /**
-Урок №5
-    Все Все о циклах
+Урок №7
+Знакомимся с объектами и массивами, методы переборов и псевдомассивы
     ОБЯЗАТЕЛЬНОЕ ЗАДАНИЕ: 
-
-1) Переписать функцию start циклом do while
-2) Добавить проверку что введённые данные являются числом, которые мы получаем на вопрос 'Во сколько это обойдется?’ в функции  getExpensesMonth
-3) Если getTargetMonth возвращает нам отрицательное значение, то вместо “Цель будет достигнута” необходимо выводить “Цель не будет достигнута”
-4) Проверить, чтобы все работало и не было ошибок в консоли
-5) Добавить папку с уроком в свой репозиторий на GitHub
 */
 
-console.log('Это первый Урок 5 Домашка Обязательное задание Все о циклах');
+console.log('Это первый Урок 7 Знакомимся с объектами и массивами, методы переборов и псевдомассивы');
 
-let isNumber = function(n) { return !isNaN(parseFloat(n)) && isFinite(n); };
+let isNumber = (n) => !isNaN(parseFloat(n)) && isFinite(n);
 
+//2) В объект appData добавить свойство budget которое будет принимать значение money
 
+//3) В объект appData добавить свойства budgetDay, budgetMonth и expensesMonth, изначально равные нулю
+
+//4) Функции getExpensesMonth, getAccumulatedMonth, getTargetMonth, getStatusIncome - сделать методами объекта AppData
+
+//5) После этого поправить весь проект, чтобы он работал, а именно
+// Везде где вызывались наши функции поправить обращение через объект, например
+// let expensesMonth = appData.getExpensesMonth(); 
 let money,
     income = 'Фриланс', //строка с доходом
     addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Бензин, коммунальные платежи, лицензионное ПО'), //строка с перечислением дополнительных расходов через запятую 
@@ -37,10 +39,11 @@ const start = function() {
 }
 start();
 
-const showTypeOf = (data) => console.log(data, typeof data);
-showTypeOf(money);
-showTypeOf(income);
-showTypeOf(deposit);
+//1) Функцию showTypeof и вызов функции удаляем 
+// const showTypeOf = (data) => console.log(data, typeof data);
+// showTypeOf(money);
+// showTypeOf(income);
+// showTypeOf(deposit);
 
 // let expenses1, expenses2;
 // let amount1, amount2;
