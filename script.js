@@ -1,5 +1,6 @@
 'use strict';
 
+console.log('Урок 7 Знакомимся с объектами и массивами, методы переборов и псевдомассивы');
 
 /**
 Урок №7
@@ -7,13 +8,12 @@
 ОБЯЗАТЕЛЬНОЕ ЗАДАНИЕ: 
 */
 
-console.log('Урок 7 Знакомимся с объектами и массивами, методы переборов и псевдомассивы');
-
-let isNumber = (n) => !isNaN(parseFloat(n)) && isFinite(n);
-
 const N = 2;    //количество расходов ключей в обкте appData.expenses
 
 let money;
+
+const isNumber = (n) => !isNaN(parseFloat(n)) && isFinite(n);
+
 const start = function() {
     do {
         money = prompt('Ваш месячный доход?'); //Спрашиваем у пользователя “Ваш месячный доход?”
@@ -22,33 +22,30 @@ const start = function() {
     while (!isNumber(money));
     //проверка является ли введенное пользователем числом
 };
+
 start();
 
-
-//заведем наш объект
 let appData = {
-
-    income: {},
+    budget: money,
+    budgetDay: 0,
+    budgetMonth: 0,
+    income: {},     //доходы
     addIncome: [],
     expenses: {},   //расходы
     addExpenses: [],
+    expensesMonth: 0,   //расходы в месяц
     deposit: false,
     mission: 50000,
     period: 3,
     asking: function() { //функция запроса пользователя
-
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
         appData.addExpenses = addExpenses.toLowerCase().split(', '); //array
         appData.deposit = confirm('Есть ли у вас депозит в банке?'); //boolean
-
-        // const N = 2;    //количество расходов ключей в обкте
-
         /**
          * TODO
          * Обратите внимание Если на вопрос "Введите обязательную статью расходов?" ответить 2 раза одинаково, значения свойства просто будут перезаписаны, для проверки отвечайте всегда по разному. (очень частая ошибка)
          * Проследите чтобы тип данных значения свойств были числом!
          */
-
         let expenseKey = '';
         let expenseValue = 0; 
         for (let i = 0; i < N; i++) {
@@ -61,10 +58,6 @@ let appData = {
         }
         return;
     }, //asking
-    budget: money,
-    budgetDay: 0,
-    budgetMonth: 0,
-    expensesMonth: 0,
     getExpensesMonth: function() { //функиция подсчета суммарных расходов
         let sum = 0;
 /**
@@ -73,7 +66,7 @@ let appData = {
  */
         for (let key in this.expenses) {
             sum += +this.expenses[key];
-            console.log('appData.expenses[i]: ', key);/////
+            // console.log('appData.expenses[i]: ', key);/////
         }
         this.expensesMonth = sum;
 
@@ -82,20 +75,18 @@ let appData = {
     getBudget: function() {
 /**
  * 9) getAccumulatedMonth переименовать в getBudget. Этот метод будет высчитывать значения свойств budgetMonth и budgetDay, чтобы вычислить значения используем только свойства объекта (никаких внешних переменных)
- *  
  * */        
-        return appData.budget - appData.expensesMonth;
+        appData.budget - appData.expensesMonth;
+        appData.budgetDay = appData.budgetMonth / 30;
         // return money - expensesAmount;
     },
     getTargetMonth: function() {
 /**
  * 10) В методах getTargetMonth и getStatusIncome исправить переменные, все значения получаем от нашего объекта appData
  */
-
         return Math.ceil(appData.mission / this.getBudget());
     },
     getStatusIncome: function() {
-
 /**
  * 10) В методах getTargetMonth и getStatusIncome исправить переменные, все значения получаем от нашего объекта appData
  *  */        
@@ -133,26 +124,22 @@ appData.asking();
  * TODO
  * 11) Вызвать все необходимые методы после объекта, чтобы корректно считались все данные (порядок очень важен).
  * 
- * 
  * 12) В консоль вывести: 
- * 
  *     — Расходы за месяц
  *     — За какой период будет достигнута цель (в месяцах)
  *     — Уровень дохода
  * */
 
+appData.getExpensesMonth(); // расчет Расходы за месяц
 
-// let expensesAmount = appData.getExpensesMonth();
-// appData.expensesMonth = appData.getExpensesMonth();
-appData.getExpensesMonth();
+// let accumulatedMonth = appData.getBudget(); // == money - (amount1 + amount2) == бюджет это накопленная сумма за месяц 
 
-console.log('Расходы за месяц:', appData.expensesMonth);
 
-let accumulatedMonth = appData.getBudget(); // == money - (amount1 + amount2) == бюджет это накопленная сумма за месяц 
 
-appData.budgetDay = accumulatedMonth / 30;
 
 appData.period = appData.getTargetMonth();
+
+console.log('Расходы за месяц:', appData.expensesMonth);
 
 console.log(appData.getStatusIncome());
 
@@ -169,7 +156,6 @@ console.log('appdata', appData);
 /**
  * Все остальное почистить в программе у нас всего две переменных money и appData
 И две функции start и возможно isNumber
-
 
 13) Используя цикл for in для объекта (appData), вывести в консоль сообщение "Наша программа включает в себя данные: " (вывести все свойства и значения)
  */
