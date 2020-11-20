@@ -1,10 +1,10 @@
 'use strict';
 
-console.log('Урок 7 Знакомимся с объектами и массивами, методы переборов и псевдомассивы');
+console.log('Урок 8 Подготовим наш проект для работы со страницей');
 
 /**
-Урок №7
-Знакомимся с объектами и массивами, методы переборов и псевдомассивы
+Урок №8
+Подготовим наш проект для работы со страницей
 ОБЯЗАТЕЛЬНОЕ ЗАДАНИЕ: 
 */
 
@@ -18,7 +18,6 @@ const start = function() {
         console.log('money: ', money);
     } 
     while (!isNumber(money));
-    //проверка является ли введенное пользователем числом
 };
 
 start();
@@ -33,11 +32,21 @@ let appData = {
     addExpenses: [],
     expensesMonth: 0,   //расходы в месяц
     deposit: false,
+    percentDeposit: 0,
+    moneyDeposit: 0,
     mission: 50000,
     period: 3,
     N: 2,    //количество расходов ключей в обкте appData.expenses
-    asking: function() { //функция запроса пользователя
-        //расходы
+    asking: function() { //Временная функция запроса пользователя о доходах и расходах
+
+        if (confirm('Есть ли у вас дополнительный заработок?')) {
+            //если есть дополнительный заработок запишем его поключам
+            let itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
+            let cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', '10000');
+            appData.income[itemIncome] = cashIncome;
+        }
+
+
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
         appData.addExpenses = addExpenses.toLowerCase().split(', '); //array
         appData.deposit = confirm('Есть ли у вас депозит в банке?'); //boolean
@@ -59,32 +68,31 @@ let appData = {
             this.expenses[expenseKey] = expenseValue; //object
         }
     },
-    one: 1,
     getExpensesMonth: function() { //функиция подсчета суммарных расходов
         let sum = 0;
-/**
+        /**
  * 8) Переписать метод getExpensesMonth: с помощью цикла считаем сумму всех обязательных расходов и сохраняем результат в свойство expensesMonth нашего объекта
  * для того, чтобы посчитать сумму используйте цикл for in
  */
-        for (let key in this.expenses) {
-            sum += +this.expenses[key];
-            // console.log('appData.expenses[i]: ', key);/////
-        }
-        this.expensesMonth = sum;
-        return sum; //вывод суммарного расхода в месяц
-    },//getExpensesMonth
+for (let key in this.expenses) {
+    sum += +this.expenses[key];
+    // console.log('appData.expenses[i]: ', key);/////
+}
+this.expensesMonth = sum;
+return sum; //вывод суммарного расхода в месяц
+},//getExpensesMonth
 
-    getBudget: function() {
-/**
- * 9) getAccumulatedMonth переименовать в getBudget. Этот метод будет высчитывать значения свойств budgetMonth и budgetDay, 
- * чтобы вычислить значения используем только свойства объекта (никаких внешних переменных)
- * */        
-        appData.budgetMonth = appData.budget - appData.expensesMonth;
-        appData.budgetDay = Math.floor(appData.budgetMonth / 30);
-    },
-    getTargetMonth: function() {
-/**
- * 10) В методах getTargetMonth и getStatusIncome исправить переменные, все значения получаем от нашего объекта appData
+getBudget: function() {
+    /**
+     * 9) getAccumulatedMonth переименовать в getBudget. Этот метод будет высчитывать значения свойств budgetMonth и budgetDay, 
+     * чтобы вычислить значения используем только свойства объекта (никаких внешних переменных)
+     * */        
+    appData.budgetMonth = appData.budget - appData.expensesMonth;
+    appData.budgetDay = Math.floor(appData.budgetMonth / 30);
+},
+getTargetMonth: function() {
+    /**
+     * 10) В методах getTargetMonth и getStatusIncome исправить переменные, все значения получаем от нашего объекта appData
  */
         return Math.ceil(appData.mission / appData.budgetMonth);
     },
@@ -98,16 +106,29 @@ let appData = {
             return ('У вас средний уровень дохода');
         } else if (this.budgetDay > 0) {
             return ('К сожалению у вас уровень дохода ниже среднего. ' +
-                    'Следует серьезно отнестись к своему планированию');
+            'Следует серьезно отнестись к своему планированию');
         } else {
             return ('Остается бюджет 0 или ниже');
         }
+    },
+    getInfoDeposit: function() {
+        // appData.deposit = confirm('Есть ли у вас депозит в банке?'); //boolean
+        if (appData.deposit) {
+            appData.moneyDeposit = prompt('Какой залог депозита?', 10);
+            appData.percentDeposit = prompt('Каков годовой процент депозита?', 10000);
+        }
+    },
+    calcSavedMoney: function(){
+
+        return (appData.budgetMonth * appData.period);
     }
 }; //appData
 
 // 2) В объект appData добавить свойство budget которое будет принимать значение money
 // 3) В объект appData добавить свойства budgetDay, budgetMonth и expensesMonth, изначально равные нулю
 // 4) Функции getExpensesMonth, getAccumulatedMonth, getTargetMonth, getStatusIncome - сделать методами объекта AppData
+
+
 
 //////////////////////////////////////////////////
 
@@ -146,10 +167,13 @@ console.log('appdata', appData);
 
 /**
  * Все остальное почистить в программе у нас всего две переменных money и appData
-И две функции start и возможно isNumber
+ И две функции start и возможно isNumber
 
-13) Используя цикл for in для объекта (appData), вывести в консоль сообщение "Наша программа включает в себя данные: " (вывести все свойства и значения)
- */
+13) Используя цикл for in для объекта (appData), 
+вывести в консоль сообщение 
+"Наша программа включает в себя данные: "
+(вывести все свойства и значения)
+*/
 
 
 if (appData.getTargetMonth() > 0) {
@@ -165,3 +189,7 @@ for (let key in appData) {
     console.log('Наша программа включает в себя такие данные: ', key, appData[key]);
 }
 
+
+console.log(appData.getInfoDeposit());
+
+console.log(appData.percentDeposit, appData.moneyDeposit, appData.budgetMonth, appData.calcSavedMoney(), appData.getTargetMonth(), appData.getExpensesMonth());
